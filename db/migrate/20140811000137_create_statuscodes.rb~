@@ -1,0 +1,22 @@
+class CreateStatuscodes < ActiveRecord::Migration
+  def change
+    create_table :statuscodes do |t|
+      t.string :typekey
+      t.string :name
+
+      t.timestamps
+    end
+  end
+  def up
+    create_table :statuscodes do |t|
+      t.string :typekey
+      t.string :name
+      t.timestamps
+    end
+    StatusCode.create_translation_table! :TypeKey => :string, :Name => :string
+  def down
+    drop_table :statuscodes
+    StatusCode.drop_translation_table!
+    end
+  end
+end
